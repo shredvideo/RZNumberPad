@@ -73,7 +73,7 @@ static NSUInteger const kRZNumberPadCols    = 3;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    frame.size = [[self class] defaultSize];
+    frame.size = [self defaultSize];
     
     self = [super initWithFrame:frame];
     if ( self ) {
@@ -102,7 +102,7 @@ static NSUInteger const kRZNumberPadCols    = 3;
 {
     [super awakeFromNib];
     
-    self.bounds = (CGRect){.size = [[self class] defaultSize]};
+    self.bounds = (CGRect){.size = [self defaultSize]};
     
     [self configureView];
     
@@ -114,7 +114,7 @@ static NSUInteger const kRZNumberPadCols    = 3;
 
 #pragma mark - public methods
 
-+ (CGSize)defaultSize
+- (CGSize)defaultSize
 {
     // NOTE: The number pad cannot be resized. This size is used on all devices.
     CGSize defaultSize;
@@ -129,17 +129,17 @@ static NSUInteger const kRZNumberPadCols    = 3;
     return defaultSize;
 }
 
-+ (CGSize)buttonSize
+- (CGSize)buttonSize
 {
     return CGSizeMake(kRZNumberPadButtonSize, kRZNumberPadButtonSize);
 }
 
-+ (CGPoint)buttonSpacing
+- (CGPoint)buttonSpacing
 {
     return CGPointZero;
 }
 
-+ (RZNumberPadDimensions)dimensions
+- (RZNumberPadDimensions)dimensions
 {
     return (RZNumberPadDimensions){.width = kRZNumberPadCols, .height = kRZNumberPadRows};
 }
@@ -151,33 +151,33 @@ static NSUInteger const kRZNumberPadCols    = 3;
 
 - (void)setBounds:(CGRect)bounds
 {
-    bounds.size = [[self class] defaultSize];
+    bounds.size = [self defaultSize];
     
     [super setBounds:bounds];
 }
 
 - (void)setFrame:(CGRect)frame
 {
-    frame.size = [[self class] defaultSize];
+    frame.size = [self defaultSize];
     
     [super setFrame:frame];
 }
 
 - (CGSize)intrinsicContentSize
 {
-    return [[self class] defaultSize];
+    return [self defaultSize];
 }
 
 - (void)setShowingBackButton:(BOOL)showingBackButton
 {
     _showingBackButton = showingBackButton;
-    self.backButton.hidden = !showingBackButton;
+    self.backButton.enabled = showingBackButton;
 }
 
 - (void)setShowingDoneButton:(BOOL)showingDoneButton
 {
     _showingDoneButton = showingDoneButton;
-    self.doneButton.hidden = !showingDoneButton;
+    self.doneButton.enabled = showingDoneButton;
 }
 
 - (void)configureButton:(UIView *)button forNumber:(NSNumber *)number
@@ -335,9 +335,9 @@ static NSUInteger const kRZNumberPadCols    = 3;
 
 - (void)configureView
 {
-    RZNumberPadDimensions dimensions = [[self class] dimensions];
-    CGSize buttonSize = [[self class] buttonSize];
-    CGPoint buttonSpacing = [[self class] buttonSpacing];
+    RZNumberPadDimensions dimensions = [self dimensions];
+    CGSize buttonSize = [self buttonSize];
+    CGPoint buttonSpacing = [self buttonSpacing];
     
     Class buttonClass = [[self class] buttonClass];
     

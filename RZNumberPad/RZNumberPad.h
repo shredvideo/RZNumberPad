@@ -64,24 +64,24 @@ IB_DESIGNABLE
  *  @note Number pads cannot be resized--they will always be the default size.
  *
  */
-+ (CGSize)defaultSize;
+- (CGSize)defaultSize;
 
 /**
  *  The size in points of each button in the number pad. Default is 44x44.
  */
-+ (CGSize)buttonSize;
+- (CGSize)buttonSize;
 
 /**
  *  The amount of space between each button. The X value is horizontal spacing, and Y value is vertical spacing.
  *  Default is 0.0, 0.0.
  */
-+ (CGPoint)buttonSpacing;
+- (CGPoint)buttonSpacing;
 
 /**
  *  The dimensions of the number pad. Width is the be number of columns, and height is the be number of rows.
  *  Default is 3x4 (for 0-9 buttons).
  */
-+ (RZNumberPadDimensions)dimensions;
+- (RZNumberPadDimensions)dimensions;
 
 /**
  *  The class used to create the button views. Subclasses may override this method to use different buttons
